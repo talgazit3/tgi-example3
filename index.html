@@ -3,102 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>כרמי גליל | שמן זית איכותי</title>
+    <title>דף נחיתה מקצועי - הכל כלול</title>
     <style>
-        :root {
-            --olive-green: #4b5d2f;
-            --light-olive: #8d9e77;
-            --cream: #f4f1ea;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--cream);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(75, 93, 47, 0.6), rgba(75, 93, 47, 0.3)), 
-                        url('https://images.unsplash.com/photo-1474939561930-990c743c6833?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        h1 { font-size: 4rem; margin-bottom: 10px; }
-
-        /* Animated Olive Tree Section */
-        .parallax-section {
-            padding: 100px 20px;
-            text-align: center;
-            background: var(--cream);
-        }
-
-        .olive-tree-icon {
-            font-size: 80px;
-            transition: transform 0.5s ease-out;
-            display: inline-block;
-        }
-
-        /* Content Styling */
-        .section-content {
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: block;
-            width: 200px;
-            margin: 50px auto;
-            padding: 15px;
-            background-color: var(--olive-green);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .cta-button:hover { background-color: #35441d; transform: scale(1.05); }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .logo { font-weight: bold; font-size: 1.5rem; }
+        
+        /* Hero */
+        .hero { background: #1a1a2e; color: #fff; padding: 100px 5%; text-align: center; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        
+        /* General Sections */
+        .container { padding: 80px 5%; max-width: 1200px; margin: auto; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #fff; }
+        
+        /* Pricing */
+        .pricing-table { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
+        .price-box { border: 2px solid #667eea; padding: 30px; border-radius: 10px; width: 300px; text-align: center; }
+        
+        /* FAQ */
+        .faq { background: #f4f4f9; padding: 80px 5%; }
+        
+        /* Buttons */
+        .btn { background: #e94560; color: #fff; padding: 15px 35px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 20px; }
+        
+        footer { background: #16213e; color: #fff; padding: 50px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div>
-            <h1>כרמי גליל</h1>
-            <p>שמן זית בכבישה קרה מהגליל העליון</p>
+    <nav>
+        <div class="logo">TGI Brand</div>
+        <div>דף הבית | אודות | שירותים | צור קשר</div>
+    </nav>
+
+    <header class="hero">
+        <h1>הפוך את העסק שלך למותג מוביל</h1>
+        <p>פתרונות טכנולוגיים מתקדמים שחוסכים לך זמן, כסף ומאמץ.</p>
+        <a href="#contact" class="btn">התחל עכשיו</a>
+    </header>
+
+    <section class="container">
+        <h2>השירותים שלנו</h2>
+        <div class="grid-3">
+            <div class="card"><h3>פיתוח אפליקציות</h3><p>בניית אפליקציות מהירות ומודרניות בהתאמה אישית.</p></div>
+            <div class="card"><h3>שיווק דיגיטלי</h3><p>אסטרטגיה שתביא לך לידים איכותיים בכל יום.</p></div>
+            <div class="card"><h3>ייעוץ אסטרטגי</h3><p>ניתוח העסק שלך ומציאת נקודות התורפה לשיפור.</p></div>
         </div>
     </section>
 
-    <section class="parallax-section">
-        <h2>הטבע בבקבוק</h2>
-        <div class="olive-tree-icon" id="tree">🌳</div>
-        <div class="section-content">
-            <p>אנחנו מאמינים במסורת. בכל שנה, כשהזיתים מבשילים, אנחנו מוסקים אותם בעבודת יד ומפיקים שמן זית בעל טעם עמוק וייחודי.</p>
-            <img src="https://images.unsplash.com/photo-1592419044706-397d64b0f323?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 10px; margin-top: 20px;">
+    <section class="container" style="background: #fafafa;">
+        <h2>מחירון מותאם</h2>
+        <div class="pricing-table">
+            <div class="price-box"><h3>בסיסי</h3><p>למתחילים</p><h2>99 ₪</h2></div>
+            <div class="price-box" style="border-color: #e94560;"><h3>עסקי</h3><p>המומלץ שלנו</p><h2>299 ₪</h2></div>
+            <div class="price-box"><h3>פרימיום</h3><p>לחברות גדולות</p><h2>599 ₪</h2></div>
         </div>
     </section>
 
-    <a href="mailto:info@karmi-galil.co.il" class="cta-button">ליצירת קשר</a>
+    <section class="faq">
+        <div class="container">
+            <h2>שאלות נפוצות</h2>
+            <p><strong>האם ניתן לבטל בכל עת?</strong> כן, אין התחייבות לטווח ארוך.</p>
+            <p><strong>איך מקבלים תמיכה?</strong> אנחנו זמינים בוואטסאפ ובמייל 24/7.</p>
+        </div>
+    </section>
 
-    <script>
-        // אנימציית גלילה פשוטה לעץ
-        window.addEventListener('scroll', () => {
-            const tree = document.getElementById('tree');
-            let scrollPos = window.scrollY;
-            tree.style.transform = `rotate(${scrollPos / 10}deg) scale(${1 + scrollPos/2000})`;
-        });
-    </script>
+    <footer id="contact">
+        <h2>מוכן להתחיל?</h2>
+        <p>צור קשר: email@example.com | 050-0000000</p>
+        <p>&copy; 2026 כל הזכויות שמורות ל-TGI</p>
+    </footer>
+
 </body>
 </html>
