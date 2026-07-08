@@ -2,71 +2,80 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ארץ כרמים // שמן זית גלילי פרימיום</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <title>מסיק גלילי // מסע בשמן זית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --olive-deep: #2d4025;
-            --olive-light: #5a7a4c;
-            --gold: #d4af37;
-            --cream: #f9f7f2;
+            --bg-olive: #1a2614;
+            --text-light: #f4f1ea;
+            --accent-gold: #c5a059;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--cream); font-family: 'Assistant', sans-serif; color: var(--olive-deep); line-height: 1.8; }
+        body { background-color: var(--bg-olive); color: var(--text-light); font-family: 'Assistant', sans-serif; line-height: 1.8; overflow-x: hidden; }
 
-        /* כותרת ראשית */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000') no-repeat center/cover; color: white; text-align: center; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; }
+        /* רקע זז עם הגלילה */
+        .parallax-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(26, 38, 20, 0.9), rgba(26, 38, 20, 0.9)), 
+                        url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000');
+            background-attachment: fixed; background-size: cover; z-index: -1;
+        }
 
-        /* סעיפי גלילה */
-        .section { padding: 100px 10%; display: flex; align-items: center; gap: 50px; }
-        .text-part { flex: 1; }
-        .img-part { flex: 1; height: 400px; background-size: cover; border-radius: 20px; transition: transform 0.6s ease; }
+        /* עץ זית גרפי בקוד (SVG) */
+        .olive-tree { width: 150px; height: 200px; margin: 0 auto; fill: var(--accent-gold); }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
+        h1, h2 { font-family: 'Playfair Display', serif; color: var(--accent-gold); }
+        h1 { font-size: 4rem; margin-bottom: 20px; }
+        p { margin-bottom: 30px; font-size: 1.2rem; opacity: 0.9; }
+
+        .spacer { height: 300px; }
         
-        .fade-in { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        .gold-btn { background: var(--olive-deep); color: white; padding: 15px 30px; display: inline-block; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        .chapter { padding: 80px 0; border-top: 1px solid rgba(197, 160, 89, 0.3); }
+        
+        /* אנימציית כניסה לטקסט */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div>
-            <h1>ארץ כרמים</h1>
-            <p>זהב גלילי טהור מכבישה קרה</p>
-        </div>
-    </header>
+    <div class="parallax-bg"></div>
 
-    <section class="section fade-in">
-        <div class="text-part">
-            <h2>השורשים שלנו</h2>
-            <p>הכל מתחיל בכרמי הזית העתיקים שלנו בגליל. שם, בין אבני הבזלת לרוח ההרים, הזיתים מקבלים את הטעם הייחודי שלהם. זה לא רק שמן, זו מורשת של משפחה.</p>
+    <div class="container">
+        <div class="olive-tree">
+            <svg viewBox="0 0 100 100">
+                <path d="M50 10 C50 30, 30 50, 40 70 L45 90 L55 90 L60 70 C70 50, 50 30, 50 10 Z" />
+                <circle cx="35" cy="40" r="5" /><circle cx="65" cy="45" r="5" /><circle cx="50" cy="25" r="5" />
+            </svg>
         </div>
-        <div class="img-part" style="background-image: url('https://images.unsplash.com/photo-1616428383569-8078696bf713?q=80&w=800');"></div>
-    </section>
+        
+        <h1>סוד הזהב הגלילי</h1>
+        <p>השמן שלנו הוא לא סתם מוצר. הוא תמצית של אדמה, שמש ושנים של מסורת משפחתית שעוברת מדור לדור.</p>
 
-    <section class="section fade-in">
-        <div class="img-part" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7ea3cbd97948?q=80&w=800');"></div>
-        <div class="text-part">
-            <h2>מסיק של אהבה</h2>
-            <p>אנחנו מוסקים את הזיתים בשיטות מסורתיות, שומרים על הטריות המקסימלית ומעבירים אותם לכבישה קרה בתוך שעות ספורות מרגע הקטיף.</p>
+        <div class="chapter reveal">
+            <h2>התחלה באדמה</h2>
+            <p>הכל מתחיל בנטיעת השתילים. עץ הזית הוא הסמל העתיק ביותר ליציבות ולשלום באזורנו. אנחנו מטפלים בכל עץ באופן אישי, מוודאים שהוא מקבל את כמות המים המדויקת ואת חום השמש הנכון כדי להפיק את הטעם המאוזן ביותר.</p>
         </div>
-    </section>
 
-    <section style="text-align: center; padding: 100px;">
-        <h2 style="font-size: 3rem;">מוכנים לטעום את הגליל?</h2>
-        <a href="#" class="gold-btn">לרכישת בקבוק שמן</a>
-    </section>
+        <div class="chapter reveal">
+            <h2>המסיק המסורתי</h2>
+            <p>כשהזיתים מגיעים לשיא הבשלות, אנחנו יוצאים לכרם. בעזרת ידיים אוהבות וכלי עבודה עדינים, אנחנו אוספים את הפרי. המסיק הוא חגיגה של טבע, ימים ארוכים תחת כיפת השמיים שבהם הזמן עוצר מלכת.</p>
+        </div>
+
+        <div class="chapter reveal">
+            <h2>מהמטע אל השולחן</h2>
+            <p>התהליך מסתיים בכבישה קרה. אנחנו לא מוסיפים חומרים משמרים, לא מעבדים בחום ולא מסננים יותר מדי. התוצאה היא שמן זית בתולי מעולה, בעל גוון ירוק עז וארומה שפותחת את כל החושים. כל בקבוק הוא סיפור של עונה שלמה.</p>
+        </div>
+    </div>
 
     <script>
+        // אנימציית הופעה בגלילה
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
