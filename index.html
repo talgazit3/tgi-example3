@@ -3,80 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>דף נחיתה מקצועי - הכל כלול</title>
+    <title>TGI Brand - פתרונות פרימיום לעסק</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        /* --- אתחול בסיסי --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* גופן מודרני וקריא */
+        }
+
+        :root {
+            --primary-color: #1a1a2e; /* כחול כהה, יוקרתי */
+            --accent-color: #d4af37; /* זהב, לפרימיום */
+            --secondary-accent: #e94560; /* בורדו-ורוד, ל-CTA */
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #fff;
+            --transition: all 0.3s ease; /* אנימציה בסיסית חלקה */
+        }
+
+        body {
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--white);
+            overflow-x: hidden; /* מונע גלילה אופקית בטעות */
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* --- אנימציות כניסה (Fade In) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0; /* מתחיל שקוף, האנימציה תפעיל אותו */
+        }
+
+        /* סנכרון אנימציות (Delay) לאפקט מדורג */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- כפתורים (CTA) --- */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--secondary-accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #c9354e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+        }
+
+        /* --- תפריט ניווט (Navbar) - מותאם --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- אזור Hero --- */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--white);
+            padding: 120px 5% 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* --- קונטיינר כללי ואלמנטים גמישים --- */
+        .container {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* --- כרטיסים (Features/Pricing) --- */
+        .card {
+            padding: 40px;
+            border-radius: 15px;
+            background: var(--white);
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- מחירון --- */
+        .pricing {
+            background-color: var(--light-bg);
+        }
+
+        .price-box {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-box.featured {
+            border: 2px solid var(--accent-color);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
         
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .logo { font-weight: bold; font-size: 1.5rem; }
-        
-        /* Hero */
-        .hero { background: #1a1a2e; color: #fff; padding: 100px 5%; text-align: center; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
-        
-        /* General Sections */
-        .container { padding: 80px 5%; max-width: 1200px; margin: auto; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #fff; }
-        
-        /* Pricing */
-        .pricing-table { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
-        .price-box { border: 2px solid #667eea; padding: 30px; border-radius: 10px; width: 300px; text-align: center; }
-        
-        /* FAQ */
-        .faq { background: #f4f4f9; padding: 80px 5%; }
-        
-        /* Buttons */
-        .btn { background: #e94560; color: #fff; padding: 15px 35px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 20px; }
-        
-        footer { background: #16213e; color: #fff; padding: 50px; text-align: center; }
+        .price-box.featured::before {
+            content: "המומלץ";
+            position: absolute;
+            top: 15px;
+            left: -30px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 5px 30px;
+            transform: rotate(-45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .price-box h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .price-box h2 span {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .price-box ul {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: right;
+            display: inline-block;
+        }
+
+        .price-box ul li {
+            margin-bottom: 10px;
+        }
+
+        /* --- שאלות נפוצות (FAQ) --- */
+        .faq-item {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* --- פוטר (Footer) --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #ccc;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        footer h2 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        footer .contact-info {
+            margin-bottom: 30px;
+        }
+
+        footer p.copy {
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        /* --- התאמה מלאה לנייד (Media Queries) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 2rem !important; }
+            
+            .hero { padding: 100px 5% 80px; }
+            
+            .nav-links {
+                display: none; /* מסתיר את התפריט הרגיל בנייד */
+                /* כאן בדרך כלל מוסיפים המבורגר מבוסס JS */
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr; /* טור אחד בנייד */
+                gap: 20px;
+            }
+
+            .price-box.featured {
+                transform: scale(1); /* מבטל את ההגדלה בנייד */
+                margin: 20px 0;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- ניווט עליון -->
     <nav>
-        <div class="logo">TGI Brand</div>
-        <div>דף הבית | אודות | שירותים | צור קשר</div>
+        <a href="#" class="logo">TGI<span>Brand</span></a>
+        <ul class="nav-links">
+            <li><a href="#features">שירותים</a></li>
+            <li><a href="#pricing">מחירון</a></li>
+            <li><a href="#faq">שאלות</a></li>
+            <li><a href="#contact">צור קשר</a></li>
+        </ul>
     </nav>
 
+    <!-- אזור Hero (ראשי) -->
     <header class="hero">
-        <h1>הפוך את העסק שלך למותג מוביל</h1>
-        <p>פתרונות טכנולוגיים מתקדמים שחוסכים לך זמן, כסף ומאמץ.</p>
-        <a href="#contact" class="btn">התחל עכשיו</a>
+        <div class="animate-in delay-1">
+            <h1>העסק שלך. למותג <span>מוביל</span>.</h1>
+            <p>אנחנו מעצבים, מפתחים ומקדמים עסקים כדי להפוך אותם למובילי שוק. הגיע הזמן שגם אתה תהיה שם.</p>
+            <a href="#contact" class="btn">בוא נתחיל לדבר</a>
+        </div>
     </header>
 
-    <section class="container">
-        <h2>השירותים שלנו</h2>
+    <!-- אזור שירותים (Features) -->
+    <section id="features" class="container">
+        <h2 class="section-title animate-in delay-2">איך אנחנו עוזרים לך?</h2>
         <div class="grid-3">
-            <div class="card"><h3>פיתוח אפליקציות</h3><p>בניית אפליקציות מהירות ומודרניות בהתאמה אישית.</p></div>
-            <div class="card"><h3>שיווק דיגיטלי</h3><p>אסטרטגיה שתביא לך לידים איכותיים בכל יום.</p></div>
-            <div class="card"><h3>ייעוץ אסטרטגי</h3><p>ניתוח העסק שלך ומציאת נקודות התורפה לשיפור.</p></div>
+            <div class="card animate-in delay-3">
+                <h3>מיתוג ואסטרטגיה</h3>
+                <p>בניית זהות עסקית חזקה, לוגו ושפה ויזואלית שתגרום ללקוחות לזכור אותך.</p>
+            </div>
+            <div class="card animate-in delay-3">
+                <h3>פיתוח ועיצוב דיגיטלי</h3>
+                <p>אתרים, דפי נחיתה ואפליקציות מהירות, מודרניות ומותאמות להמרה (Conversion).</p>
+            </div>
+            <div class="card animate-in delay-3">
+                <h3>צמיחה ושיווק</h3>
+                <p>קמפיינים ממוקדים, קידום אורגני (SEO) ואסטרטגיית תוכן שתביא לך לידים איכותיים.</p>
+            </div>
         </div>
     </section>
 
-    <section class="container" style="background: #fafafa;">
-        <h2>מחירון מותאם</h2>
-        <div class="pricing-table">
-            <div class="price-box"><h3>בסיסי</h3><p>למתחילים</p><h2>99 ₪</h2></div>
-            <div class="price-box" style="border-color: #e94560;"><h3>עסקי</h3><p>המומלץ שלנו</p><h2>299 ₪</h2></div>
-            <div class="price-box"><h3>פרימיום</h3><p>לחברות גדולות</p><h2>599 ₪</h2></div>
-        </div>
-    </section>
-
-    <section class="faq">
+    <!-- אזור מחירון (Pricing) -->
+    <section id="pricing" class="pricing">
         <div class="container">
-            <h2>שאלות נפוצות</h2>
-            <p><strong>האם ניתן לבטל בכל עת?</strong> כן, אין התחייבות לטווח ארוך.</p>
-            <p><strong>איך מקבלים תמיכה?</strong> אנחנו זמינים בוואטסאפ ובמייל 24/7.</p>
+            <h2 class="section-title animate-in">חבילות גמישות להצלחה</h2>
+            <div class="grid-3 pricing-table">
+                <div class="card price-box animate-in delay-1">
+                    <h3>Starter</h3>
+                    <p>לעסקים בתחילת הדרך</p>
+                    <h2>1,500 ₪ <span>/חד-פעמי</span></h2>
+                    <ul>
+                        <li>דף נחיתה ממוקד</li>
+                        <li>עיצוב מותאם לנייד</li>
+                        <li>אופטימיזציה בסיסית</li>
+                    </ul>
+                    <a href="#contact" class="btn">בחר בחבילה</a>
+                </div>
+                <div class="card price-box featured animate-in delay-2">
+                    <h3>Pro Business</h3>
+                    <p>לצמיחה משמעותית</p>
+                    <h2>4,500 ₪ <span>/חד-פעמי</span></h2>
+                    <ul>
+                        <li>אתר תדמית מלא (5 דפים)</li>
+                        <li>מיתוג עסקי בסיסי (לוגו)</li>
+                        <li>חיבור למערכות דיוור</li>
+                        <li>תמיכה חודשית (3 חודשים)</li>
+                    </ul>
+                    <a href="#contact" class="btn">החבילה המומלצת</a>
+                </div>
+                <div class="card price-box animate-in delay-3">
+                    <h3>Enterprise</h3>
+                    <p>למותגים גדולים</p>
+                    <h2>בהתאמה <span>/אישית</span></h2>
+                    <ul>
+                        <li>מערכות מורכבות</li>
+                        <li>מיתוג פרימיום מלא</li>
+                        <li>קמפיין שיווקי מקיף</li>
+                    </ul>
+                    <a href="#contact" class="btn">צור קשר לייעוץ</a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- שאלות נפוצות (FAQ) -->
+    <section id="faq" class="container">
+        <h2 class="section-title animate-in">שאלות נפוצות</h2>
+        <div class="animate-in delay-1">
+            <div class="faq-item">
+                <p><strong>תוך כמה זמן הדף מוכן?</strong></p>
+                <p>חבילת ה-Starter מוכנה בדרך כלל תוך 7-10 ימי עסקים.</p>
+            </div>
+            <div class="faq-item">
+                <p><strong>האם אני הבעלים של הקוד?</strong></p>
+                <p>כן, בסיום הפרויקט כל הנכסים הדיגיטליים עוברים לבעלותך המלאה.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- פוטר וצור קשר (Footer & Contact) -->
     <footer id="contact">
-        <h2>מוכן להתחיל?</h2>
-        <p>צור קשר: email@example.com | 050-0000000</p>
-        <p>&copy; 2026 כל הזכויות שמורות ל-TGI</p>
+        <div class="animate-in delay-1">
+            <h2>מוכן להפוך למותג?</h2>
+            <p>השאר פרטים או התקשר, והצוות שלנו יחזור אליך בהקדם.</p>
+            <div class="contact-info">
+                <p>📞 050-0000000</p>
+                <p>✉️ info@tgibrand.co.il</p>
+            </div>
+            <a href="mailto:info@tgibrand.co.il" class="btn">שלח לנו מייל</a>
+            <p class="copy">&copy; 2026 TGI Brand Solutions. כל הזכויות שמורות.</p>
+        </div>
     </footer>
 
 </body>
