@@ -2,114 +2,71 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANDAL // STREET CULTURE</title>
+    <title>ארץ כרמים // שמן זית גלילי פרימיום</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
-        /* עיצוב ברוטליסטי - בלי מעגלים, בלי טשטושים, הכל ישר ובוט */
         :root {
-            --bg-color: #0F0F0F;
-            --text-color: #FFFFFF;
-            --accent-color: #E6FF00; /* צהוב ניאון רעיל */
+            --olive-deep: #2d4025;
+            --olive-light: #5a7a4c;
+            --gold: #d4af37;
+            --cream: #f9f7f2;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--cream); font-family: 'Assistant', sans-serif; color: var(--olive-deep); line-height: 1.8; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Arial Black', sans-serif;
-            overflow-x: hidden;
-            padding: 20px;
-        }
+        /* כותרת ראשית */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000') no-repeat center/cover; color: white; text-align: center; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; }
 
-        /* גריד קשוח */
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* סעיפי גלילה */
+        .section { padding: 100px 10%; display: flex; align-items: center; gap: 50px; }
+        .text-part { flex: 1; }
+        .img-part { flex: 1; height: 400px; background-size: cover; border-radius: 20px; transition: transform 0.6s ease; }
+        
+        .fade-in { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        header {
-            border: 4px solid var(--text-color);
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        h1 { font-size: 8vw; line-height: 0.9; text-transform: uppercase; }
-
-        .big-box {
-            border: 4px solid var(--accent-color);
-            padding: 40px;
-            background: #1a1a1a;
-            position: relative;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 300px;
-            background: #333;
-            border: 2px solid white;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-        }
-
-        .price-tag {
-            background: var(--accent-color);
-            color: black;
-            display: inline-block;
-            padding: 5px 15px;
-            font-weight: 900;
-        }
-
-        button {
-            background: black;
-            color: white;
-            border: 2px solid white;
-            padding: 20px;
-            width: 100%;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        button:hover { background: var(--accent-color); color: black; }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            h1 { font-size: 15vw; }
-        }
+        .gold-btn { background: var(--olive-deep); color: white; padding: 15px 30px; display: inline-block; text-decoration: none; border-radius: 5px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div>VANDAL.CO</div>
-        <div>MENU ☰</div>
+    <header class="hero">
+        <div>
+            <h1>ארץ כרמים</h1>
+            <p>זהב גלילי טהור מכבישה קרה</p>
+        </div>
     </header>
 
-    <h1>WE ARE<br>NOT<br>PRETTY.</h1>
-
-    <div class="container" style="margin-top: 50px;">
-        <div class="big-box">
-            <div class="product-img">🛹</div>
-            <h2>VANDAL PRO DECK</h2>
-            <div class="price-tag">89$</div>
-            <button>ADD TO CART</button>
+    <section class="section fade-in">
+        <div class="text-part">
+            <h2>השורשים שלנו</h2>
+            <p>הכל מתחיל בכרמי הזית העתיקים שלנו בגליל. שם, בין אבני הבזלת לרוח ההרים, הזיתים מקבלים את הטעם הייחודי שלהם. זה לא רק שמן, זו מורשת של משפחה.</p>
         </div>
-        <div class="big-box">
-            <div class="product-img">👕</div>
-            <h2>RAGS HOODIE</h2>
-            <div class="price-tag">120$</div>
-            <button>ADD TO CART</button>
-        </div>
-    </div>
-
-    <section style="margin-top: 50px; border: 4px dashed white; padding: 50px;">
-        <h2 style="font-size: 3rem;">DROP INFO: 20.07.26 // 22:00</h2>
-        <p style="margin-top: 20px; font-size: 1.5rem;">NO RULES. NO FILTERS. JUST GEAR.</p>
+        <div class="img-part" style="background-image: url('https://images.unsplash.com/photo-1616428383569-8078696bf713?q=80&w=800');"></div>
     </section>
 
+    <section class="section fade-in">
+        <div class="img-part" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7ea3cbd97948?q=80&w=800');"></div>
+        <div class="text-part">
+            <h2>מסיק של אהבה</h2>
+            <p>אנחנו מוסקים את הזיתים בשיטות מסורתיות, שומרים על הטריות המקסימלית ומעבירים אותם לכבישה קרה בתוך שעות ספורות מרגע הקטיף.</p>
+        </div>
+    </section>
+
+    <section style="text-align: center; padding: 100px;">
+        <h2 style="font-size: 3rem;">מוכנים לטעום את הגליל?</h2>
+        <a href="#" class="gold-btn">לרכישת בקבוק שמן</a>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
