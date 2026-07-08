@@ -2,86 +2,84 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ארץ כרמים // סיפורו של הזהב הגלילי</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ארץ כרמים // שמן זית גלילי פרימיום</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        /* --- משתני עיצוב --- */
         :root {
-            --olive: #2a3d22;
+            --bg-dark: #1a2614;
             --gold: #c5a059;
-            --cream: #fbf9f4;
+            --text-main: #fdfdfd;
+            --text-muted: #d1cfc9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--cream); color: var(--olive); font-family: 'Assistant', sans-serif; line-height: 1.8; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Assistant', sans-serif; line-height: 1.8; overflow-x: hidden; }
 
-        /* HERO SECTION */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .hero-bg { position: absolute; top:0; left:0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000') no-repeat center/cover; background-attachment: fixed; }
-        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; letter-spacing: 2px; }
+        /* --- Hero Section --- */
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(26, 38, 20, 0.6), rgba(26, 38, 20, 0.6)), url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000') no-repeat center/cover; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--text-main); margin-bottom: 10px; }
+        .hero p { font-size: 1.8rem; color: var(--gold); font-style: italic; }
 
-        /* CONTENT SECTIONS */
-        .container { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
-        .chapter { padding: 150px 0; opacity: 0; transform: translateY(100px); transition: all 1s ease-out; }
+        /* --- Sections --- */
+        .content { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
+        .chapter { padding: 100px 0; opacity: 0; transform: translateY(50px); transition: all 1s ease; }
         .chapter.visible { opacity: 1; transform: translateY(0); }
         
         h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 30px; }
-        p { font-size: 1.4rem; margin-bottom: 20px; }
+        p { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 20px; }
 
-        /* IMAGE PARALLAX */
-        .img-parallax { width: 100%; height: 500px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: 4px; margin: 50px 0; }
+        /* --- Image Grid --- */
+        .img-box { width: 100%; height: 400px; background-size: cover; background-position: center; border-radius: 8px; margin: 40px 0; }
 
-        /* FOOTER / CONTACT */
-        .contact { background: var(--olive); color: white; padding: 100px 20px; text-align: center; }
-        .tel-btn { display: inline-block; padding: 20px 50px; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 1.5rem; margin-top: 30px; transition: 0.3s; }
-        .tel-btn:hover { background: var(--gold); color: white; }
+        /* --- Contact / Footer --- */
+        .footer { background: #141d10; padding: 80px 20px; text-align: center; }
+        .btn { display: inline-block; padding: 20px 60px; background: var(--gold); color: var(--bg-dark); text-decoration: none; font-size: 1.4rem; font-weight: 600; border-radius: 5px; margin-top: 30px; transition: 0.3s; }
+        .btn:hover { background: #a68448; color: white; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>ארץ כרמים</h1>
-            <p>המסורת הגלילית בבקבוק אחד</p>
-        </div>
+        <h1>ארץ כרמים</h1>
+        <p>המסורת הגלילית בבקבוק אחד</p>
     </section>
 
-    <div class="container">
+    <div class="content">
         <div class="chapter">
             <h2>האדמה שקוראת לנו</h2>
-            <p>במרחק נסיעה קצרה מהפסגות המושלגות של החרמון, אל מול נופי הגליל הפתוחים, שוכנים כרמי הזיתים שלנו. האדמה כאן היא לא רק אדמה – היא זיכרון.</p>
-            <p>אנחנו מטפחים את העצים בשיטות בנות מאות שנים, ללא ריסוסים, רק מים מהמעיין ואהבה גדולה למקום הזה.</p>
+            <p>במרחק נסיעה קצרה מהפסגות המושלגות של החרמון, אל מול נופי הגליל הפתוחים, שוכנים כרמי הזיתים שלנו. האדמה כאן היא לא רק אדמה – היא זיכרון עמוק של שנים של חקלאות משפחתית.</p>
         </div>
 
-        <div class="img-parallax" style="background-image: url('https://images.unsplash.com/photo-1616428383569-8078696bf713?q=80&w=1200');"></div>
+        <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1616428383569-8078696bf713?q=80&w=1200');"></div>
 
         <div class="chapter">
             <h2>מלאכת המסיק</h2>
-            <p>כשמגיע הזמן, האוויר בכרם משתנה. ריח של זיתים בשלים ממלא את הנשימה. זהו הזמן שבו משפחות מתאחדות, דורות שלמים מגיעים לכרם כדי לקחת חלק במסורת.</p>
-            <p>הזיתים שלנו נקטפים ביד, בזהירות מרבית, כדי לא לפצוע את הפרי, ומובלים למכבש תוך פחות משעתיים.</p>
+            <p>כשמגיע הזמן, האוויר בכרם משתנה. ריח של זיתים בשלים ממלא את הנשימה. הזיתים שלנו נקטפים ביד, בזהירות מרבית, כדי לא לפצוע את הפרי, ומובלים למכבש תוך פחות משעתיים מרגע הקטיף.</p>
         </div>
 
-        <div class="img-parallax" style="background-image: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=1200');"></div>
+        <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7ea3cbd97948?q=80&w=1200');"></div>
 
         <div class="chapter">
-            <h2>הטעם של הגליל</h2>
-            <p>השמן שלנו מתאפיין בטעם פירותי עדין עם חריפות קלה בסיומת, בדיוק כמו ששמן זית איכותי צריך להיות. זה לא עוד מרכיב במטבח – זו הנשמה של הארוחה.</p>
+            <h2>הזהב הגלילי</h2>
+            <p>השמן שלנו מתאפיין בטעם פירותי עדין עם חריפות קלה בסיומת – החתימה האישית של הכרם שלנו. זהו מוצר טהור, ללא תוספות, שנשמר בבקבוקים מעוצבים עד שהוא מגיע אליכם למטבח.</p>
         </div>
     </div>
 
-    <section class="contact">
-        <h2>מוכנים להכניס את הגליל הביתה?</h2>
-        <p>מכירה ישירה מהיקב – סליחה, מהכרם – אליכם.</p>
-        <a href="tel:050-0000000" class="tel-btn">התקשרו אלינו: 050-0000000</a>
+    <section class="footer">
+        <h2>מעוניינים בטעם הגלילי?</h2>
+        <p>נשמח לשלוח לכם את שמן הזית שלנו ישירות מהמטע לביתכם.</p>
+        <a href="tel:0500000000" class="btn">התקשרו עכשיו: 050-0000000</a>
     </section>
 
     <script>
-        // אנימציית גלילה מתוחכמת
+        // אנימציית גלילה
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
