@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER // Media & Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --text-color: #2D3436;
+            --accent: #74B9FF;
+            --bg-body: #F0F2F5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Assistant', sans-serif; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            background-image: radial-gradient(circle at 50% 0%, #DFF9FB, transparent 70%);
+            line-height: 1.6;
+        }
+
+        .container { padding: 0 5%; max-width: 1200px; margin: 0 auto; }
+
+        /* --- White Glass Elements --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+        }
+
+        header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        
+        .hero { padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 4rem; font-weight: 200; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; color: #636E72; max-width: 600px; margin: 0 auto; }
+
+        /* --- Content Sections --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 50px 0; }
+        
+        .section-title { font-size: 2rem; margin-bottom: 30px; font-weight: 300; }
+
+        .service-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .cta-btn {
+            background: #2D3436;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: var(--accent); }
+
+        footer { text-align: center; padding: 50px; color: #B2BEC3; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h2>AETHER<span>.</span></h2>
+            <div style="font-weight: 600;">EN / HE</div>
+        </header>
+
+        <section class="hero">
+            <h1>אסטרטגיה של אור.</h1>
+            <p>אנחנו ב-AETHER הופכים מותגים לחוויות ויזואליות בלתי נשכחות. דיוק, אלגנטיות, ותוצאות.</p>
+        </section>
+
+        <section class="glass-card">
+            <h2 class="section-title">התמחות</h2>
+            <div class="grid">
+                <div>
+                    <div class="service-icon">✨</div>
+                    <h3>מיתוג שקוף</h3>
+                    <p>בניית זהות מותג שמרגישה טבעית, נקייה ומזמינה ללקוח הקצה.</p>
+                </div>
+                <div>
+                    <div class="service-icon">💎</div>
+                    <h3>מדיה פרימיום</h3>
+                    <p>ניהול קמפיינים שמשדרים יוקרה ושומרים על ערך המותג בכל פלטפורמה.</p>
+                </div>
+                <div>
+                    <div class="service-icon">🎨</div>
+                    <h3>דיזיין סקיי</h3>
+                    <p>עיצוב ממשקים שמרגישים קלים כמו אוויר ונוחים כמו כפפה.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin: 50px 0; text-align: center;">
+            <h2 class="section-title">התהליך שלנו</h2>
+            <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+                <p>אנחנו מתחילים בהקשבה. מבינים את המהות שלכם, מנקים את הרעשים מסביב, ומגישים קמפיין שמשקף בדיוק את מי שאתם. בלי מניירות, רק אימפקט.</p>
+                <a href="#" class="cta-btn">בואו נתחיל לדבר</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 AETHER MEDIA. CREATIVE EXCELLENCE.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
