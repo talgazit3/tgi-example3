@@ -3,671 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMEN // סוכנות קריאייטיב, פרסום ומדיה פרימיום</title>
-    <!-- פונט אלגנטי, נקי וקל לקריאה -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>VANDAL // STREET CULTURE</title>
     <style>
-        /* --- משתני עיצוב לסגנון White Glass יוקרתי --- */
+        /* עיצוב ברוטליסטי - בלי מעגלים, בלי טשטושים, הכל ישר ובוט */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-card: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --text-dark: #1E252B;
-            --text-muted: #627585;
-            --accent-blue: #4A90E2;
-            --accent-soft: #A3CBF1;
-            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --radius-main: 24px;
+            --bg-color: #0F0F0F;
+            --text-color: #FFFFFF;
+            --accent-color: #E6FF00; /* צהוב ניאון רעיל */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Assistant', sans-serif;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
 
         body {
-            background-color: #EBF1F6;
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Arial Black', sans-serif;
             overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* גריד קשוח */
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        header {
+            border: 4px solid var(--text-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h1 { font-size: 8vw; line-height: 0.9; text-transform: uppercase; }
+
+        .big-box {
+            border: 4px solid var(--accent-color);
+            padding: 40px;
+            background: #1a1a1a;
             position: relative;
         }
 
-        /* --- כדורי תאורה אמביאנטיים זזים ברקע (הסוד מאחורי הזכוכית) --- */
-        .bg-glow-1 {
-            position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(163, 203, 241, 0.5) 0%, transparent 70%);
-            top: -100px; right: -100px;
-            z-index: -1;
-            animation: floatGlow 12s infinite alternate ease-in-out;
-        }
-
-        .bg-glow-2 {
-            position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(243, 201, 219, 0.4) 0%, transparent 70%);
-            top: 600px; left: -100px;
-            z-index: -1;
-            animation: floatGlow 16s infinite alternate-reverse ease-in-out;
-        }
-
-        .bg-glow-3 {
-            position: absolute;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(199, 237, 227, 0.4) 0%, transparent 70%);
-            bottom: 200px; right: 10%;
-            z-index: -1;
-        }
-
-        @keyframes floatGlow {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(50px) scale(1.1); }
-        }
-
-        /* --- מערכת Reveal עדינה לגלילה נעימה --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: var(--transition-smooth);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-1 { transition-delay: 0.15s; }
-        .delay-2 { transition-delay: 0.3s; }
-
-        /* --- 1. סרגל ניווט זכוכית (Navbar) --- */
-        header {
-            position: fixed;
-            top: 20px; left: 5%; right: 5%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 15px 40px;
-            border-radius: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04);
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--text-dark);
-        }
-
-        .logo span { color: var(--accent-blue); }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover { opacity: 0.7; }
-
-        .menu-btn { display: none; font-size: 24px; cursor: pointer; }
-
-        /* --- 2. מסך פתיחה פואטי (Hero Section) --- */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            padding: 160px 8% 60px 8%;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
+        .product-img {
             width: 100%;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 4.2rem;
-            font-weight: 200;
-            line-height: 1.15;
-            margin-bottom: 25px;
-        }
-
-        .hero-text h1 strong {
-            font-weight: 700;
-            background: linear-gradient(90deg, #3A7BD5, #3A6073);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-text p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        /* טופס זכוכית בתוך ה-Hero */
-        .glass-lead-card {
-            background: var(--glass-card);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            padding: 40px 30px;
-            border-radius: var(--radius-main);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
-        }
-
-        .glass-lead-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .glass-lead-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
-
-        .input-wrapper {
-            margin-bottom: 16px;
-        }
-
-        .input-wrapper input, .input-wrapper select {
-            width: 100%;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255,255,255,0.7);
-            border-radius: 12px;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            outline: none;
-            transition: var(--transition-smooth);
-        }
-
-        .input-wrapper input:focus {
-            background: white;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(74, 144, 226, 0.1);
-        }
-
-        .glass-submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--text-dark);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .glass-submit-btn:hover {
-            background: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-
-        /* --- 3. קטע מספרים עדין (Stats Numbers) --- */
-        .stats-section {
-            padding: 60px 8%;
-        }
-
-        .stats-glass-bar {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: var(--radius-main);
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            text-align: center;
-        }
-
-        .stat-item h2 {
-            font-size: 3rem;
-            font-weight: 200;
-            color: var(--text-dark);
-        }
-
-        .stat-item h2 span { font-weight: 700; color: var(--accent-blue); }
-        .stat-item p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
-
-        /* --- 4. עמודי התווך של השירותים (Services) --- */
-        .services-section {
-            padding: 100px 8%;
-        }
-
-        .section-header {
-            margin-bottom: 60px;
-        }
-
-        .section-header span {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            color: var(--accent-blue);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .section-header h2 {
-            font-size: 2.6rem;
-            font-weight: 300;
-            margin-top: 5px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .service-glass-card {
-            background: var(--glass-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 45px 35px;
-            border-radius: var(--radius-main);
-            transition: var(--transition-smooth);
-        }
-
-        .service-glass-card:hover {
-            transform: translateY(-6px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
-        }
-
-        .service-circle {
-            width: 60px; height: 60px;
-            background: white;
-            border-radius: 50%;
+            height: 300px;
+            background: #333;
+            border: 2px solid white;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            font-size: 5rem;
         }
 
-        .service-glass-card h3 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+        .price-tag {
+            background: var(--accent-color);
+            color: black;
+            display: inline-block;
+            padding: 5px 15px;
+            font-weight: 900;
         }
 
-        .service-glass-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* --- 5. תיק עבודות / קמפיינים אסטטיים (Portfolio) --- */
-        .portfolio-section {
-            padding: 80px 8%;
-        }
-
-        .showcase-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .showcase-box {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-main);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .showcase-img {
-            width: 100%;
-            height: 350px;
-            background-size: cover;
-            background-position: center;
-            filter: saturate(0.85);
-            transition: var(--transition-smooth);
-        }
-
-        .showcase-box:hover .showcase-img {
-            filter: saturate(1.1);
-            transform: scale(1.02);
-        }
-
-        .img-1 { background-image: url('https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=800&auto=format&fit=crop'); }
-        .img-2 { background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop'); }
-
-        .showcase-details {
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .showcase-details h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
-        .showcase-details p { color: var(--text-muted); font-size: 0.95rem; }
-
-        /* --- 6. תהליך עבודה רגוע ונעים --- */
-        .process-section {
-            padding: 100px 8%;
-        }
-
-        .process-flow {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .process-node {
-            flex: 1;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 35px 25px;
-            border-radius: var(--radius-main);
-            position: relative;
-        }
-
-        .process-tag {
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .process-node h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
-        .process-node p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
-
-        /* --- 7. פוטר סגירה מעוצב --- */
-        footer {
-            padding: 60px 8%;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- 💬 כפתור צור קשר צף תואם זכוכית --- */
-        .glass-float-btn {
-            position: fixed;
-            bottom: 30px; left: 30px;
-            width: 60px; height: 60px;
-            background: white;
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 2000;
-            transition: var(--transition-smooth);
-        }
-
-        .glass-float-btn:hover {
-            transform: scale(1.08) rotate(10deg);
-            background: var(--text-dark);
+        button {
+            background: black;
             color: white;
+            border: 2px solid white;
+            padding: 20px;
+            width: 100%;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
 
-        .glass-float-btn svg { width: 22px; height: 22px; fill: currentColor; }
+        button:hover { background: var(--accent-color); color: black; }
 
-        /* =======================================================
-           📱 התאמת קצה למובייל (White Glass Mobile First)
-           ======================================================= */
-        @media (max-width: 968px) {
-            header {
-                padding: 15px 25px;
-                top: 15px;
-            }
-
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
-
-            .hero { padding-top: 140px; }
-            .hero-container { grid-template-columns: 1fr; gap: 40px; }
-            .hero-text { text-align: center; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text p { font-size: 1.1rem; margin: 0 auto 30px auto; }
-
-            /* שדרוג מובייל: האלמנטים מקבלים מרווח קל יותר והופכים לטאבים אנכיים נעימים */
-            .stats-glass-bar { padding: 30px 20px; gap: 20px; }
-            .stat-item { width: 45%; }
-            .stat-item h2 { font-size: 2.2rem; }
-
-            /* הפיכת גריד השירותים לסליידר אופקי חלק למניעת גלילה אינסופית */
-            .services-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 20px;
-                padding-bottom: 15px;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .service-glass-card {
-                min-width: 82vw;
-                scroll-snap-align: center;
-                padding: 30px 20px;
-            }
-
-            .showcase-container, .process-flow {
-                grid-template-columns: 1fr;
-                flex-direction: column;
-                gap: 25px;
-            }
-
-            .showcase-img { height: 240px; }
-
-            .glass-float-btn {
-                bottom: 20px; left: 20px;
-                width: 52px; height: 52px;
-            }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            h1 { font-size: 15vw; }
         }
     </style>
 </head>
 <body>
 
-    <!-- כדורי אור מעוצבים מאחורי הקלעים -->
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
-    <div class="bg-glow-3"></div>
-
-    <!-- סרגל הניווט השקוף -->
     <header>
-        <div class="logo">LUMEN<span>.</span></div>
-        <div class="menu-btn">☰</div>
-        <ul class="nav-links">
-            <li><a href="#services">מה אנחנו עושים</a></li>
-            <li><a href="#portfolio">קמפיינים</a></li>
-            <li><a href="#process">הדרך שלנו</a></li>
-        </ul>
+        <div>VANDAL.CO</div>
+        <div>MENU ☰</div>
     </header>
 
-    <!-- 1. מסך ה-Hero הראשי -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-text reveal">
-                <h1>פרסום שהוא <strong>אמנות</strong>.<br>תוצאות שהן מדע.</h1>
-                <p>אנחנו בסטודיו LUMEN יוצרים מהלכי מדיה ושיווק קריאייטיביים עבור המותגים המובילים בארץ. בלי רעשותרסטליים, רק שיווק נקי שמביא קהל מדויק.</p>
-            </div>
+    <h1>WE ARE<br>NOT<br>PRETTY.</h1>
 
-            <div class="glass-lead-card reveal delay-1">
-                <h3>בואו נזקק את המותג שלכם</h3>
-                <p>השאירו פרטים קצרים ונתאם שיחת אפיון קריאייטיב ללא עלות.</p>
-                <form onsubmit="event.preventDefault(); alert('הפנייה התקבלה במערכות LUMEN. נציג בכיר יחזור אליך ב-24 השעות הקרובות.');">
-                    <div class="input-wrapper">
-                        <input type="text" placeholder="שם פרטי ועסק" required>
-                    </div>
-                    <div class="input-wrapper">
-                        <input type="tel" placeholder="מספר נייד ליצירת קשר" required>
-                    </div>
-                    <div class="input-wrapper">
-                        <select>
-                            <option>מה המטרה המרכזית שלכם?</option>
-                            <option>מיתוג מחדש ובניית שפה ויזואלית</option>
-                            <option>ניהול קמפיינים ממומנים ומכירות</option>
-                            <option>הפקת תוכן וניהול רשתות חברתיות</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="glass-submit-btn">נצא לדרך ⚡</button>
-                </form>
-            </div>
+    <div class="container" style="margin-top: 50px;">
+        <div class="big-box">
+            <div class="product-img">🛹</div>
+            <h2>VANDAL PRO DECK</h2>
+            <div class="price-tag">89$</div>
+            <button>ADD TO CART</button>
         </div>
+        <div class="big-box">
+            <div class="product-img">👕</div>
+            <h2>RAGS HOODIE</h2>
+            <div class="price-tag">120$</div>
+            <button>ADD TO CART</button>
+        </div>
+    </div>
+
+    <section style="margin-top: 50px; border: 4px dashed white; padding: 50px;">
+        <h2 style="font-size: 3rem;">DROP INFO: 20.07.26 // 22:00</h2>
+        <p style="margin-top: 20px; font-size: 1.5rem;">NO RULES. NO FILTERS. JUST GEAR.</p>
     </section>
 
-    <!-- 2. מספרים ונתונים (Stats) -->
-    <section class="stats-section container reveal">
-        <div class="stats-glass-bar">
-            <div class="stat-item">
-                <h2><span>94</span>%</h2>
-                <p>שביעות רצון לקוחות קצה</p>
-            </div>
-            <div class="stat-item">
-                <h2>₪<span>15</span>M+</h2>
-                <p>תקציבי מדיה מנוהלים</p>
-            </div>
-            <div class="stat-item">
-                <h2><span>300</span>+</h2>
-                <p>קמפיינים ופיצוחים ויזואליים</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. אזור שירותים (מובייל סליידר) -->
-    <section id="services" class="services-section container">
-        <div class="section-header reveal">
-            <span>במה אנחנו מתמחים?</span>
-            <h2>פתרונות קריאייטיב מקיפים</h2>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-glass-card reveal delay-1">
-                <div class="service-circle">🎯</div>
-                <h3>אסטרטגיית קמפיינים</h3>
-                <p>פיצוח קהלי היעד המדויקים שלכם והקמת מערך פרסום חכם ב-Google, Meta וטיקטוק שמייצר לקוחות משלמים.</p>
-            </div>
-            <div class="service-glass-card reveal delay-2">
-                <div class="service-circle">💎</div>
-                <h3>זהות מותג יוקרתית</h3>
-                <p>עיצוב לוגו, בחירת צבעים, פונטים ושפה עיצובית שתגרום לעסק שלכם להיראות כמו החברה המובילה בשוק שלה.</p>
-            </div>
-            <div class="service-glass-card reveal">
-                <div class="service-circle">📸</div>
-                <h3>הפקות תוכן ווידאו</h3>
-                <p>ימי צילום מקצועיים, הפקת סרטוני UGC וקריאייטיב מהיר שתופס את העין של הגולשים ברשת תוך פחות משנייה.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. תיק עבודות / קייס סטאדיס -->
-    <section id="portfolio" class="portfolio-section container">
-        <div class="section-header reveal">
-            <span>עבודות נבחרות</span>
-            <h2>מהלכים ששינו את השוק</h2>
-        </div>
-
-        <div class="showcase-container">
-            <div class="showcase-box reveal">
-                <div class="showcase-img img-1"></div>
-                <div class="showcase-details">
-                    <h4>השקת קולקציית פרימיום // מותג אופנה</h4>
-                    <p>קמפיין וידאו קריאייטיבי שהוביל למכירה מוחלטת של המלאי תוך 14 ימים בלבד.</p>
-                </div>
-            </div>
-            <div class="showcase-box reveal delay-1">
-                <div class="showcase-img img-2"></div>
-                <div class="showcase-details">
-                    <h4>מיתוג מחדש // קבוצת נדל"ן ואדריכלות</h4>
-                    <p>יצירת זהות נקייה בסגנון זכוכית שהעלתה את אחוז הפניות האיכותיות מהאתר ב-65%.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. תהליך העבודה של LUMEN -->
-    <section id="process" class="process-section container">
-        <div class="section-header reveal" style="text-align: center;">
-            <span>איך זה עובד?</span>
-            <h2>המסלול השקט לעסק צומח</h2>
-        </div>
-
-        <div class="process-flow">
-            <div class="process-node reveal">
-                <span class="process-tag">שלב 01</span>
-                <h4>זיקוק ואפיון</h4>
-                <p>אנחנו נפגשים לקפה, מנקים את כל רעשי הרקע ומגדירים בדיוק מי הלקוח האידיאלי שלכם.</p>
-            </div>
-            <div class="process-node reveal delay-1">
-                <span class="process-tag">שלב 02</span>
-                <h4>קריאייטיב וייצור</h4>
-                <p>הצוות שלנו בונה את המודעות, מעצב את החומרים ומכין את הנשק השיווקי שלכם לעלייה לאוויר.</p>
-            </div>
-            <div class="process-node reveal delay-2">
-                <span class="process-tag">שלב 03</span>
-                <h4>בקרה ואופטימיזציה</h4>
-                <p>מפעילים את הקמפיינים, עוקבים אחרי כל שקל ומשפרים ביצועים כל יום כדי להבטיח מקסימום תוצאה.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- פוטר סיום הדף -->
-    <footer>
-        <p>© 2026 LUMEN Creative Media Initiatives. כל הזכויות שמורות.<br>עיצוב וקוד בסטנדרט White Glass נקי ומוקפד.</p>
-    </footer>
-
-    <!-- ✉️ כפתור יצירת קשר צף תואם זכוכית חלבית -->
-    <a href="mailto:office@lumenmedia.com" class="glass-float-btn" title="שלחו לנו אימייל">
-        <svg viewBox="0 0 20 20">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-        </svg>
-    </a>
-
-    <!-- סקריפט ה-Reveal להופעת אלמנטים חלקה בזמן הגלילה -->
-    <script>
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
