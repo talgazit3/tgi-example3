@@ -2,80 +2,92 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>מסיק גלילי // מסע בשמן זית</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <title>ארץ כרמים // סיפורו של הזהב הגלילי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-olive: #1a2614;
-            --text-light: #f4f1ea;
-            --accent-gold: #c5a059;
+            --olive: #2a3d22;
+            --gold: #c5a059;
+            --cream: #fbf9f4;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-olive); color: var(--text-light); font-family: 'Assistant', sans-serif; line-height: 1.8; overflow-x: hidden; }
+        body { background-color: var(--cream); color: var(--olive); font-family: 'Assistant', sans-serif; line-height: 1.8; }
 
-        /* רקע זז עם הגלילה */
-        .parallax-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(26, 38, 20, 0.9), rgba(26, 38, 20, 0.9)), 
-                        url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000');
-            background-attachment: fixed; background-size: cover; z-index: -1;
+        /* HERO SECTION */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .hero-bg { position: absolute; top:0; left:0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=2000') no-repeat center/cover; background-attachment: fixed; }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; letter-spacing: 2px; }
+
+        /* CONTENT SECTIONS */
+        .container { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
+        .chapter { padding: 150px 0; opacity: 0; transform: translateY(100px); transition: all 1s ease-out; }
+        .chapter.visible { opacity: 1; transform: translateY(0); }
+        
+        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 30px; }
+        p { font-size: 1.4rem; margin-bottom: 20px; }
+
+        /* IMAGE PARALLAX */
+        .img-parallax { width: 100%; height: 500px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: 4px; margin: 50px 0; }
+
+        /* FOOTER / CONTACT */
+        .contact { background: var(--olive); color: white; padding: 100px 20px; text-align: center; }
+        .tel-btn { display: inline-block; padding: 20px 50px; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 1.5rem; margin-top: 30px; transition: 0.3s; }
+        .tel-btn:hover { background: var(--gold); color: white; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
         }
-
-        /* עץ זית גרפי בקוד (SVG) */
-        .olive-tree { width: 150px; height: 200px; margin: 0 auto; fill: var(--accent-gold); }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
-        h1, h2 { font-family: 'Playfair Display', serif; color: var(--accent-gold); }
-        h1 { font-size: 4rem; margin-bottom: 20px; }
-        p { margin-bottom: 30px; font-size: 1.2rem; opacity: 0.9; }
-
-        .spacer { height: 300px; }
-        
-        .chapter { padding: 80px 0; border-top: 1px solid rgba(197, 160, 89, 0.3); }
-        
-        /* אנימציית כניסה לטקסט */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="parallax-bg"></div>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>ארץ כרמים</h1>
+            <p>המסורת הגלילית בבקבוק אחד</p>
+        </div>
+    </section>
 
     <div class="container">
-        <div class="olive-tree">
-            <svg viewBox="0 0 100 100">
-                <path d="M50 10 C50 30, 30 50, 40 70 L45 90 L55 90 L60 70 C70 50, 50 30, 50 10 Z" />
-                <circle cx="35" cy="40" r="5" /><circle cx="65" cy="45" r="5" /><circle cx="50" cy="25" r="5" />
-            </svg>
-        </div>
-        
-        <h1>סוד הזהב הגלילי</h1>
-        <p>השמן שלנו הוא לא סתם מוצר. הוא תמצית של אדמה, שמש ושנים של מסורת משפחתית שעוברת מדור לדור.</p>
-
-        <div class="chapter reveal">
-            <h2>התחלה באדמה</h2>
-            <p>הכל מתחיל בנטיעת השתילים. עץ הזית הוא הסמל העתיק ביותר ליציבות ולשלום באזורנו. אנחנו מטפלים בכל עץ באופן אישי, מוודאים שהוא מקבל את כמות המים המדויקת ואת חום השמש הנכון כדי להפיק את הטעם המאוזן ביותר.</p>
+        <div class="chapter">
+            <h2>האדמה שקוראת לנו</h2>
+            <p>במרחק נסיעה קצרה מהפסגות המושלגות של החרמון, אל מול נופי הגליל הפתוחים, שוכנים כרמי הזיתים שלנו. האדמה כאן היא לא רק אדמה – היא זיכרון.</p>
+            <p>אנחנו מטפחים את העצים בשיטות בנות מאות שנים, ללא ריסוסים, רק מים מהמעיין ואהבה גדולה למקום הזה.</p>
         </div>
 
-        <div class="chapter reveal">
-            <h2>המסיק המסורתי</h2>
-            <p>כשהזיתים מגיעים לשיא הבשלות, אנחנו יוצאים לכרם. בעזרת ידיים אוהבות וכלי עבודה עדינים, אנחנו אוספים את הפרי. המסיק הוא חגיגה של טבע, ימים ארוכים תחת כיפת השמיים שבהם הזמן עוצר מלכת.</p>
+        <div class="img-parallax" style="background-image: url('https://images.unsplash.com/photo-1616428383569-8078696bf713?q=80&w=1200');"></div>
+
+        <div class="chapter">
+            <h2>מלאכת המסיק</h2>
+            <p>כשמגיע הזמן, האוויר בכרם משתנה. ריח של זיתים בשלים ממלא את הנשימה. זהו הזמן שבו משפחות מתאחדות, דורות שלמים מגיעים לכרם כדי לקחת חלק במסורת.</p>
+            <p>הזיתים שלנו נקטפים ביד, בזהירות מרבית, כדי לא לפצוע את הפרי, ומובלים למכבש תוך פחות משעתיים.</p>
         </div>
 
-        <div class="chapter reveal">
-            <h2>מהמטע אל השולחן</h2>
-            <p>התהליך מסתיים בכבישה קרה. אנחנו לא מוסיפים חומרים משמרים, לא מעבדים בחום ולא מסננים יותר מדי. התוצאה היא שמן זית בתולי מעולה, בעל גוון ירוק עז וארומה שפותחת את כל החושים. כל בקבוק הוא סיפור של עונה שלמה.</p>
+        <div class="img-parallax" style="background-image: url('https://images.unsplash.com/photo-1596727147705-610c30aadd2b?q=80&w=1200');"></div>
+
+        <div class="chapter">
+            <h2>הטעם של הגליל</h2>
+            <p>השמן שלנו מתאפיין בטעם פירותי עדין עם חריפות קלה בסיומת, בדיוק כמו ששמן זית איכותי צריך להיות. זה לא עוד מרכיב במטבח – זו הנשמה של הארוחה.</p>
         </div>
     </div>
 
+    <section class="contact">
+        <h2>מוכנים להכניס את הגליל הביתה?</h2>
+        <p>מכירה ישירה מהיקב – סליחה, מהכרם – אליכם.</p>
+        <a href="tel:050-0000000" class="tel-btn">התקשרו אלינו: 050-0000000</a>
+    </section>
+
     <script>
-        // אנימציית הופעה בגלילה
+        // אנימציית גלילה מתוחכמת
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.2 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.chapter').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
