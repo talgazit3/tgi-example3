@@ -1,87 +1,818 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>MODA - אופנת בוטיק</title>
-    <style>
-        :root { --main-color: #d4a373; --bg: #fefae0; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); }
-        nav { padding: 20px; background: #fff; display: flex; justify-content: space-around; position: sticky; top: 0; }
-        .page { display: none; padding: 40px; min-height: 80vh; }
-        .active { display: block; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 15px; text-align: center; border-radius: 10px; }
-        button { background: var(--main-color); color: white; border: none; padding: 10px 20px; cursor: pointer; }
-        footer { text-align: center; padding: 20px; background: #333; color: white; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אדמה | בגדים שנולדו מהקרקע</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;600;700;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#EDE8DE;
+    --stone-dark:#E2DBCB;
+    --ink:#23231F;
+    --ink-soft:#4B4A42;
+    --forest:#3F4B3B;
+    --forest-light:#5C6B54;
+    --clay:#B5603F;
+    --clay-dark:#8f4a30;
+    --linen:#DAD2C0;
+    --gold:#B08D57;
+    --paper:#F7F4EC;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--stone);
+    color:var(--ink);
+    font-family:'Heebo',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4,.display{
+    font-family:'Frank Ruhl Libre',serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:2px solid var(--forest);outline-offset:3px;}
+
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--forest);
+    font-weight:600;
+  }
+
+  /* ===== Contour divider signature element ===== */
+  .contour{width:100%;height:34px;display:block;margin:0 auto;}
+  .contour path{fill:none;stroke:var(--gold);stroke-width:1;opacity:.55;}
+  .contour path:nth-child(2){opacity:.35;}
+  .contour path:nth-child(3){opacity:.2;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(237,232,222,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linen);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-size:1.5rem;letter-spacing:.06em;}
+  .logo span{color:var(--forest);}
+  nav ul{display:flex;gap:36px;list-style:none;margin:0;padding:0;}
+  nav a{
+    font-size:.92rem;font-weight:500;position:relative;padding:4px 0;
+    transition:color .2s;
+  }
+  nav a::after{
+    content:'';position:absolute;bottom:-2px;right:0;left:auto;width:0;height:1px;
+    background:var(--forest);transition:width .25s ease;
+  }
+  nav a:hover::after, nav a.active::after{width:100%;}
+  nav a.active{color:var(--forest);}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;}
+  .cart-count{
+    background:var(--clay);color:var(--paper);border-radius:50%;
+    width:19px;height:19px;font-size:.7rem;display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+  }
+  .burger{display:none;font-size:1.4rem;}
+
+  /* ===== Layout helpers ===== */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .page{display:none;animation:fadeIn .5s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  section{padding:88px 0;}
+  .section-tight{padding:56px 0;}
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 34px;border:1px solid var(--ink);
+    font-size:.85rem;letter-spacing:.06em;font-weight:500;
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-primary{background:var(--forest);border-color:var(--forest);color:var(--paper);}
+  .btn-primary:hover{background:var(--ink);border-color:var(--ink);}
+  .btn-line{background:transparent;}
+  .btn-line:hover{background:var(--ink);color:var(--paper);}
+  .btn-small{padding:9px 18px;font-size:.75rem;}
+
+  /* ===== HERO ===== */
+  .hero{
+    display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px;
+    padding:70px 0 40px;
+  }
+  .hero .eyebrow{margin-bottom:18px;display:block;}
+  .hero h1{font-size:3.4rem;line-height:1.12;letter-spacing:.005em;}
+  .hero p.lead{margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:46ch;}
+  .hero .actions{margin-top:34px;display:flex;gap:16px;}
+  .hero-visual{
+    position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);
+  }
+  .hero-visual img{width:100%;height:100%;object-fit:cover;}
+  .hero-visual::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 55%,rgba(35,35,31,.55));
+  }
+  .hero-tag{
+    position:absolute;bottom:22px;right:22px;color:var(--paper);
+    font-family:'Frank Ruhl Libre',serif;font-size:1rem;
+  }
+  .hero-tag span{display:block;font-family:'Heebo',sans-serif;font-size:.72rem;opacity:.85;letter-spacing:.12em;margin-top:4px;}
+
+  /* ===== Philosophy strip ===== */
+  .philosophy{
+    background:var(--forest);color:var(--paper);text-align:center;
+  }
+  .philosophy .eyebrow{color:var(--gold);}
+  .philosophy h2{color:var(--paper);font-size:1.9rem;max-width:26ch;margin:18px auto 0;line-height:1.5;}
+
+  /* ===== Layers / values (signature: earth strata) ===== */
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--linen);border-bottom:1px solid var(--linen);}
+  .layer{padding:44px 36px;border-left:1px solid var(--linen);position:relative;}
+  .layer:first-child{border-left:none;}
+  .layer .layer-label{font-family:'Frank Ruhl Libre',serif;font-size:.85rem;color:var(--gold);letter-spacing:.05em;margin-bottom:14px;display:block;}
+  .layer h3{font-size:1.2rem;margin-bottom:10px;}
+  .layer p{color:var(--ink-soft);font-size:.92rem;}
+
+  /* ===== Section headers ===== */
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:20px;}
+  .section-head h2{font-size:2.2rem;}
+  .section-head p{color:var(--ink-soft);max-width:42ch;font-size:.95rem;}
+
+  /* ===== Product grid ===== */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .card{background:var(--paper);border:1px solid var(--linen);transition:transform .3s ease, box-shadow .3s ease;}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 34px -18px rgba(35,35,31,.35);}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .card-tag{position:absolute;top:12px;right:12px;background:var(--clay);color:var(--paper);font-size:.68rem;padding:4px 10px;letter-spacing:.06em;}
+  .card-body{padding:18px 18px 20px;}
+  .card-cat{font-size:.7rem;letter-spacing:.1em;color:var(--forest);text-transform:uppercase;font-weight:600;}
+  .card-name{font-size:1.05rem;margin:8px 0 4px;font-family:'Frank Ruhl Libre',serif;font-weight:600;}
+  .card-desc{font-size:.82rem;color:var(--ink-soft);min-height:2.6em;}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .price{font-weight:600;font-size:1rem;}
+  .add-btn{
+    border:1px solid var(--ink);padding:8px 16px;font-size:.76rem;letter-spacing:.04em;
+    transition:background .2s,color .2s;
+  }
+  .add-btn:hover{background:var(--forest);border-color:var(--forest);color:var(--paper);}
+  .add-btn.added{background:var(--forest);border-color:var(--forest);color:var(--paper);}
+
+  /* ===== Featured strip on home ===== */
+  .home-shop-cta{text-align:center;margin-top:50px;}
+
+  /* ===== Shop filters ===== */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+  .filter-btn{
+    padding:9px 20px;border:1px solid var(--linen);font-size:.82rem;
+    background:var(--paper);transition:all .2s;
+  }
+  .filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+  /* ===== About ===== */
+  .about-hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-hero img{aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);}
+  .timeline{margin-top:20px;position:relative;padding-right:28px;border-right:1px solid var(--linen);}
+  .tl-item{position:relative;padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;right:-33px;top:4px;width:9px;height:9px;
+    border-radius:50%;background:var(--forest);
+  }
+  .tl-year{font-family:'Frank Ruhl Libre',serif;color:var(--forest);font-size:1.05rem;margin-bottom:4px;display:block;}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:20px;}
+  .value-card{background:var(--paper);border:1px solid var(--linen);padding:30px;}
+  .value-card .num{font-family:'Frank Ruhl Libre',serif;color:var(--gold);font-size:1.6rem;}
+
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:20px;}
+  .team-card img{aspect-ratio:1;object-fit:cover;margin-bottom:14px;}
+  .team-card h4{font-size:1.05rem;}
+  .team-card p{font-size:.85rem;color:var(--ink-soft);margin-top:2px;}
+
+  /* ===== Contact ===== */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  .field{margin-bottom:22px;}
+  .field label{display:block;font-size:.8rem;letter-spacing:.05em;margin-bottom:8px;color:var(--ink-soft);}
+  .field input,.field textarea{
+    width:100%;padding:13px 14px;border:1px solid var(--linen);background:var(--paper);
+    font-family:inherit;font-size:.95rem;color:var(--ink);
+  }
+  .field textarea{resize:vertical;min-height:120px;}
+  .field input:focus,.field textarea:focus{border-color:var(--forest);}
+  .info-block{margin-bottom:30px;}
+  .info-block h4{font-size:.95rem;margin-bottom:8px;color:var(--forest);}
+  .info-block p{font-size:.92rem;color:var(--ink-soft);}
+  .map-placeholder{
+    aspect-ratio:16/9;background:var(--linen);display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);font-size:.85rem;border:1px solid var(--linen);position:relative;overflow:hidden;
+  }
+  .social-row{display:flex;gap:16px;margin-top:10px;}
+  .social-row a{border:1px solid var(--ink);width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:.2s;}
+  .social-row a:hover{background:var(--ink);color:var(--paper);}
+
+  /* ===== Cart ===== */
+  .cart-layout{display:grid;grid-template-columns:1.6fr 1fr;gap:50px;align-items:start;}
+  .cart-item{display:grid;grid-template-columns:90px 1fr auto;gap:18px;padding:22px 0;border-bottom:1px solid var(--linen);align-items:center;}
+  .cart-item img{width:90px;height:110px;object-fit:cover;}
+  .cart-item h4{font-family:'Frank Ruhl Libre',serif;font-size:1.05rem;margin-bottom:4px;}
+  .cart-item .meta{font-size:.8rem;color:var(--ink-soft);}
+  .qty-control{display:flex;align-items:center;gap:12px;margin-top:10px;}
+  .qty-control button{border:1px solid var(--linen);width:26px;height:26px;font-size:.9rem;}
+  .remove-link{font-size:.78rem;color:var(--clay);margin-top:8px;display:inline-block;text-decoration:underline;}
+  .cart-side{background:var(--paper);border:1px solid var(--linen);padding:30px;position:sticky;top:110px;}
+  .cart-row{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:14px;}
+  .cart-row.total{font-size:1.15rem;font-weight:600;border-top:1px solid var(--linen);padding-top:16px;margin-top:16px;}
+  .empty-cart{text-align:center;padding:90px 0;}
+  .empty-cart p{color:var(--ink-soft);margin:14px 0 26px;}
+
+  /* ===== Newsletter / Footer ===== */
+  .newsletter{background:var(--ink);color:var(--paper);text-align:center;}
+  .newsletter h2{color:var(--paper);font-size:1.9rem;}
+  .newsletter p{color:#cfcac0;margin-top:10px;}
+  .nl-form{display:flex;justify-content:center;gap:0;max-width:420px;margin:30px auto 0;}
+  .nl-form input{flex:1;padding:14px 16px;border:1px solid #55534b;background:transparent;color:var(--paper);font-family:inherit;}
+  .nl-form button{padding:14px 24px;background:var(--gold);color:var(--ink);font-weight:600;font-size:.85rem;}
+
+  footer{background:var(--stone-dark);border-top:1px solid var(--linen);padding:50px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+  .foot-grid h4{font-size:.9rem;margin-bottom:16px;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;}
+  .foot-grid li{margin-bottom:10px;font-size:.86rem;color:var(--ink-soft);}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--linen);display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+
+  .toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--paper);padding:14px 26px;font-size:.88rem;
+    opacity:0;pointer-events:none;transition:opacity .3s, transform .3s;z-index:200;
+    display:flex;align-items:center;gap:10px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .hero h1{font-size:2.4rem;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .layers{grid-template-columns:1fr;}
+    .layer{border-left:none;border-top:1px solid var(--linen);}
+    .layer:first-child{border-top:none;}
+    .values-grid,.team-grid{grid-template-columns:1fr;}
+    .about-hero{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .cart-layout{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    nav ul{display:none;}
+    .burger{display:block;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
 </head>
 <body>
 
-<nav>
-    <a href="#" onclick="showPage('home')">בית</a>
-    <a href="#" onclick="showPage('shop')">חנות</a>
-    <a href="#" onclick="showPage('about')">אודות</a>
-    <a href="#" onclick="showPage('cart')">סל קניות (<span id="cart-count">0</span>)</a>
-</nav>
-
-<!-- דף הבית -->
-<section id="home" class="page active">
-    <h1>ברוכים הבאים ל-MODA</h1>
-    <p>הקולקציה החדשה שלנו כאן. עיצובים על זמניים לאנשים עם סטייל.</p>
-</section>
-
-<!-- דף חנות -->
-<section id="shop" class="page">
-    <h2>הקולקציה שלנו</h2>
-    <div class="product-grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/150" alt="חולצה">
-            <h3>חולצת פשתן</h3>
-            <p>150 ₪</p>
-            <button onclick="addToCart('חולצת פשתן', 150)">הוסף לסל</button>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/150" alt="מכנס">
-            <h3>מכנס מחוייט</h3>
-            <p>250 ₪</p>
-            <button onclick="addToCart('מכנס מחוייט', 250)">הוסף לסל</button>
-        </div>
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo" data-nav="home">אדמ<span>ה</span></a>
+    <nav>
+      <ul>
+        <li><a href="#" data-nav="home" class="active">בית</a></li>
+        <li><a href="#" data-nav="shop">קולקציה</a></li>
+        <li><a href="#" data-nav="about">אודות</a></li>
+        <li><a href="#" data-nav="contact">צור קשר</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button class="cart-btn" data-nav="cart" aria-label="עגלת קניות">
+        🧺 סל <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="תפריט">☰</button>
     </div>
+  </div>
+</header>
+
+<!-- ============ HOME PAGE ============ -->
+<main>
+<section class="page active" id="page-home">
+
+  <div class="wrap hero">
+    <div>
+      <span class="eyebrow">קולקציית סתיו־חורף 2026</span>
+      <h1>בגדים שנולדים<br>מתוך האדמה</h1>
+      <p class="lead">כותנה אורגנית, פשתן גולמי וצבעים שמופקים מעפר, שורש וקליפה. כל פריט אצלנו מסופר בעבודת יד קטנה, בלי מיהור, בלי פשרות.</p>
+      <div class="actions">
+        <button class="btn btn-primary" data-nav="shop">לצפייה בקולקציה</button>
+        <button class="btn btn-line" data-nav="about">הסיפור שלנו</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://picsum.photos/seed/adama-hero/900/1100" alt="דוגמנית לובשת פריט מהקולקציה של אדמה">
+      <div class="hero-tag">שכבה ראשונה<span>המעיל המרוקע, פשתן גולמי</span></div>
+    </div>
+  </div>
+
+  <svg class="contour" viewBox="0 0 1180 34" preserveAspectRatio="none">
+    <path d="M0 20 Q 100 5, 220 20 T 440 20 T 660 20 T 880 20 T 1180 20"/>
+    <path d="M0 26 Q 100 12, 220 26 T 440 26 T 660 26 T 880 26 T 1180 26"/>
+    <path d="M0 12 Q 100 24, 220 12 T 440 12 T 660 12 T 880 12 T 1180 12"/>
+  </svg>
+
+  <div class="philosophy">
+    <div class="wrap section-tight">
+      <span class="eyebrow">הפילוסופיה שלנו</span>
+      <h2>לא עונתיות, לא מהירה — לבוש שנחפר, לא נדפס.</h2>
+    </div>
+  </div>
+
+  <div class="layers">
+    <div class="layer">
+      <span class="layer-label">שכבה 01 — פני השטח</span>
+      <h3>בסיסים יומיומיים</h3>
+      <p>חולצות, טישרטים ותחתונים מכותנה אורגנית שנתפרים לפי מידות הגוף האמיתיות, לא לפי טבלה.</p>
+    </div>
+    <div class="layer">
+      <span class="layer-label">שכבה 02 — קרקע</span>
+      <h3>מכנסיים ושכבות אמצע</h3>
+      <p>בדים כבדים יותר, תפרים גלויים, וגזרות שנבנות להישאר איתך יותר מעונה אחת.</p>
+    </div>
+    <div class="layer">
+      <span class="layer-label">שכבה 03 — שורש</span>
+      <h3>מעילים ואביזרים</h3>
+      <p>הפריטים שנשארים בארון עשר שנים. צבועים בצבעי טבע, נתפרים ביד בסדנה קטנה בצפון.</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:88px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">נבחרים מהקולקציה</span>
+        <h2>מה שלובשים עכשיו</h2>
+      </div>
+      <p>מבחר קטן ומדויק מתוך הקולקציה המלאה — כל הפריטים זמינים לעיון והזמנה בעמוד החנות.</p>
+    </div>
+    <div class="grid" id="featuredGrid"></div>
+    <div class="home-shop-cta">
+      <button class="btn btn-line" data-nav="shop">לכל הקולקציה →</button>
+    </div>
+  </div>
+
 </section>
 
-<!-- דף אודות -->
-<section id="about" class="page">
-    <h2>אודות המותג</h2>
-    <p>אנחנו מאמינים באופנה בת קיימא ואיכות בלתי מתפשרת.</p>
+<!-- ============ SHOP PAGE ============ -->
+<section class="page" id="page-shop">
+  <div class="wrap" style="padding-top:64px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">חנות</span>
+        <h2>הקולקציה המלאה</h2>
+      </div>
+      <p>עשרים ושניים פריטים, כולם נתפרים במחזור ייצור מוגבל. מה שאוזל — לא חוזר.</p>
+    </div>
+    <div class="filters" id="filterBar"></div>
+    <div class="grid" id="shopGrid"></div>
+  </div>
 </section>
 
-<!-- דף סל -->
-<section id="cart" class="page">
-    <h2>הסל שלך</h2>
-    <div id="cart-items"></div>
-    <h3 id="total">סה"כ: 0 ₪</h3>
-    <button onclick="alert('תודה על רכישתך!')">סיום הזמנה</button>
+<!-- ============ ABOUT PAGE ============ -->
+<section class="page" id="page-about">
+  <div class="wrap" style="padding-top:64px;">
+    <div class="about-hero">
+      <div>
+        <span class="eyebrow">אודות אדמה</span>
+        <h2 style="font-size:2.1rem;margin:16px 0 18px;">התחלנו מערוגת ירק ומכונת תפירה ישנה</h2>
+        <p style="color:var(--ink-soft);">אדמה נולדה ב־2018 בחצר קטנה בעמק יזרעאל, מתוך רצון פשוט: לייצר בגדים שאפשר להרגיש מאיפה הם באים. היום אנחנו סדנה של אחת עשרה אומניות ואומנים, שעדיין תופרים כל פריט ביד, וצובעים בדים בעזרת קליפת רימון, עלי זית ועפר אדום.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-year">2018</span>
+            <p>הקולקציה הראשונה — שמונה חולצות, כולן נמכרו תוך שבוע בשוק איכרים מקומי.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2020</span>
+            <p>מעבר לסדנה קבועה, והשקת קו הצבעים הטבעיים מהאדמה האדומה של הגליל.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2023</span>
+            <p>שיתוף פעולה עם מגדלי כותנה אורגנית בערבה, לצמצום טביעת הרגל המימית.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2026</span>
+            <p>קולקציית סתיו־חורף החדשה, וחנות מקוונת שמאפשרת לכל אחד להזמין הביתה.</p>
+          </div>
+        </div>
+      </div>
+      <img src="https://picsum.photos/seed/adama-workshop/800/1000" alt="הסדנה של אדמה, שולחן עבודה עם בדים וחוטים">
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:70px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">הערכים שלנו</span>
+        <h2>איך אנחנו עובדים</h2>
+      </div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="num">01</span>
+        <h3 style="margin:10px 0 8px;font-size:1.1rem;">חומרים גולמיים בלבד</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);">כותנה אורגנית, פשתן ותצוגת צמר בלבד — בלי פוליאסטר, בלי תערובות סינתטיות.</p>
+      </div>
+      <div class="value-card">
+        <span class="num">02</span>
+        <h3 style="margin:10px 0 8px;font-size:1.1rem;">ייצור מוגבל</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);">כל קולקציה נתפרת בכמות מוגבלת, כדי למנוע עודפי מלאי ובזבוז.</p>
+      </div>
+      <div class="value-card">
+        <span class="num">03</span>
+        <h3 style="margin:10px 0 8px;font-size:1.1rem;">שכר הוגן</h3>
+        <p style="font-size:.9rem;color:var(--ink-soft);">כל האומניות והאומנים שלנו מועסקים בשכר קבוע ותנאים מלאים, לא בקבלנות.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:70px;padding-bottom:90px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">הצוות</span>
+        <h2>מי תופר את הבגדים שלכם</h2>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/adama-team1/500/500" alt="נועה כרמלי">
+        <h4>נועה כרמלי</h4>
+        <p>מייסדת ומעצבת ראשית</p>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/adama-team2/500/500" alt="יובל שגיא">
+        <h4>יובל שגיא</h4>
+        <p>אחראי צביעה טבעית</p>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/adama-team3/500/500" alt="מאיה זהבי">
+        <h4>מאיה זהבי</h4>
+        <p>ראש מחלקת תפירה</p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- ============ CONTACT PAGE ============ -->
+<section class="page" id="page-contact">
+  <div class="wrap" style="padding-top:64px;padding-bottom:90px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">צור קשר</span>
+        <h2>נשמח לשמוע מכם</h2>
+      </div>
+      <p>שאלות על מידות, זמינות או הזמנה סיטונאית — נחזור אליכם תוך יום עסקים אחד.</p>
+    </div>
+    <div class="contact-grid">
+      <form id="contactForm">
+        <div class="field">
+          <label for="cname">שם מלא</label>
+          <input type="text" id="cname" required placeholder="איך קוראים לך?">
+        </div>
+        <div class="field">
+          <label for="cemail">אימייל</label>
+          <input type="email" id="cemail" required placeholder="name@example.com">
+        </div>
+        <div class="field">
+          <label for="cmsg">הודעה</label>
+          <textarea id="cmsg" required placeholder="ספרו לנו במה נוכל לעזור..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">שליחת הודעה</button>
+      </form>
+      <div>
+        <div class="info-block">
+          <h4>הסדנה והחנות</h4>
+          <p>רחוב הגורן 14, עמק יזרעאל</p>
+          <p>פתוח א׳–ה׳, 09:00–17:00</p>
+        </div>
+        <div class="info-block">
+          <h4>טלפון ואימייל</h4>
+          <p>04-6XX-XXXX</p>
+          <p>hello@adama-studio.example</p>
+        </div>
+        <div class="info-block">
+          <h4>עקבו אחרינו</h4>
+          <div class="social-row">
+            <a href="#" aria-label="אינסטגרם">IG</a>
+            <a href="#" aria-label="פייסבוק">FB</a>
+            <a href="#" aria-label="פינטרסט">PT</a>
+          </div>
+        </div>
+        <div class="map-placeholder">מפת הגעה לסדנה — עמק יזרעאל</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CART PAGE ============ -->
+<section class="page" id="page-cart">
+  <div class="wrap" style="padding-top:64px;padding-bottom:90px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">הסל שלי</span>
+        <h2>עגלת הקניות</h2>
+      </div>
+    </div>
+    <div id="cartContent"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ NEWSLETTER ============ -->
+<div class="newsletter">
+  <div class="wrap section-tight">
+    <span class="eyebrow" style="color:var(--gold);">הישארו מחוברים לאדמה</span>
+    <h2>קבלו עדכון כשקולקציה חדשה יוצאת</h2>
+    <p>בלי ספאם, רק עדכון אחד בעונה.</p>
+    <form class="nl-form" id="nlForm">
+      <input type="email" placeholder="האימייל שלך" required>
+      <button type="submit">הרשמה</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">אדמ<span>ה</span></div>
+        <p style="font-size:.88rem;color:var(--ink-soft);max-width:32ch;">סדנת אופנה קטנה בעמק יזרעאל, שמייצרת בגדים מחומרים גולמיים וצבעי טבע מאז 2018.</p>
+      </div>
+      <div>
+        <h4>ניווט</h4>
+        <ul>
+          <li><a href="#" data-nav="home">בית</a></li>
+          <li><a href="#" data-nav="shop">קולקציה</a></li>
+          <li><a href="#" data-nav="about">אודות</a></li>
+          <li><a href="#" data-nav="contact">צור קשר</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>עזרה</h4>
+        <ul>
+          <li>מדריך מידות</li>
+          <li>משלוחים והחזרות</li>
+          <li>שאלות נפוצות</li>
+        </ul>
+      </div>
+      <div>
+        <h4>קשר</h4>
+        <ul>
+          <li>hello@adama-studio.example</li>
+          <li>04-6XX-XXXX</li>
+          <li>עמק יזרעאל</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 אדמה סטודיו. כל הזכויות שמורות.</span>
+      <span>אתר דוגמה לצרכי הדגמה בלבד</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
 
 <script>
-    let cart = [];
-    function showPage(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-    }
-    function addToCart(name, price) {
-        cart.push({name, price});
-        document.getElementById('cart-count').innerText = cart.length;
-        updateCartUI();
-    }
-    function updateCartUI() {
-        const container = document.getElementById('cart-items');
-        container.innerHTML = cart.map(item => `<p>${item.name} - ${item.price} ₪</p>`).join('');
-        const total = cart.reduce((sum, item) => sum + item.price, 0);
-        document.getElementById('total').innerText = `סה"כ: ${total} ₪`;
-    }
-</script>
+/* ================= DATA ================= */
+const PRODUCTS = [
+  {id:1, name:'חולצת פשתן גולמי', cat:'חולצות', price:249, tag:null, img:'shirt1', desc:'חולצה רפויה מפשתן 100%, נצבעה בעפר אדום.'},
+  {id:2, name:'טי אורגני חצוב', cat:'חולצות', price:139, tag:'חדש', img:'shirt2', desc:'טישרט כותנה אורגנית עם תפר צד גלוי.'},
+  {id:3, name:'חולצת פועלים', cat:'חולצות', price:279, tag:null, img:'shirt3', desc:'חולצת כפתורים כבדה בהשראת בגדי עבודה.'},
+  {id:4, name:'מכנסי קרקע רחבים', cat:'מכנסיים', price:329, tag:null, img:'pants1', desc:'מכנס וייד לג מכותנה כבדה, גזרה גבוהה.'},
+  {id:5, name:'ג׳ינס עפר כהה', cat:'מכנסיים', price:359, tag:'מבצע', img:'pants2', desc:'ג׳ינס סטרייט צבוע בקליפת אגוז.'},
+  {id:6, name:'מכנס פשתן קליל', cat:'מכנסיים', price:299, tag:null, img:'pants3', desc:'מכנס קיצי מפשתן עם גומי מותן רך.'},
+  {id:7, name:'מעיל שורש', cat:'מעילים', price:649, tag:'חדש', img:'coat1', desc:'מעיל צמר כבד עם בטנת פשתן, נתפר ביד.'},
+  {id:8, name:'ז׳קט קרקעי', cat:'מעילים', price:499, tag:null, img:'coat2', desc:'ז׳קט עבודה קצר עם כיסי חזה כפולים.'},
+  {id:9, name:'מעיל גשם אדמה', cat:'מעילים', price:579, tag:null, img:'coat3', desc:'מעיל עמיד במים מבד ממוחזר, גזרה רחבה.'},
+  {id:10, name:'שמלת שדה', cat:'שמלות', price:389, tag:null, img:'dress1', desc:'שמלת מידי מכותנה, גזרה חופשית ונינוחה.'},
+  {id:11, name:'שמלת עלי זית', cat:'שמלות', price:419, tag:'חדש', img:'dress2', desc:'שמלה ארוכה בגוון ירוק זית עמום.'},
+  {id:12, name:'שמלת פשתן קיץ', cat:'שמלות', price:359, tag:null, img:'dress3', desc:'שמלה קלילה עם כפתורים לכל האורך.'},
+  {id:13, name:'חגורת עור גס', cat:'אביזרים', price:159, tag:null, img:'acc1', desc:'חגורה מעור צבוע ביד עם אבזם פליז.'},
+  {id:14, name:'כובע צמר', cat:'אביזרים', price:99, tag:null, img:'acc2', desc:'כובע גרב מצמר מחומם ורך.'},
+  {id:15, name:'צעיף פשתן', cat:'אביזרים', price:129, tag:'מבצע', img:'acc3', desc:'צעיף קליל מפשתן טבעי בגוון חול.'},
+  {id:16, name:'תיק בד גולמי', cat:'אביזרים', price:189, tag:null, img:'acc4', desc:'תיק כתף מבד קנבס עבה עם רצועת עור.'},
+];
 
-<footer>© 2026 MODA - כל הזכויות שמורות</footer>
+const CATS = ['הכל', ...new Set(PRODUCTS.map(p=>p.cat))];
+
+/* ================= STATE ================= */
+let cart = {}; // {id: qty}
+let currentFilter = 'הכל';
+
+/* ================= HELPERS ================= */
+function imgUrl(seed, w=600, h=800){
+  return `https://picsum.photos/seed/adama-${seed}/${w}/${h}`;
+}
+function formatPrice(n){ return '₪' + n.toLocaleString('he-IL'); }
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+/* ================= RENDER PRODUCT CARD ================= */
+function productCard(p){
+  const inCart = !!cart[p.id];
+  return `
+  <div class="card">
+    <div class="card-img">
+      <img src="${imgUrl(p.img)}" alt="${p.name}">
+      ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
+    </div>
+    <div class="card-body">
+      <span class="card-cat">${p.cat}</span>
+      <h3 class="card-name">${p.name}</h3>
+      <p class="card-desc">${p.desc}</p>
+      <div class="card-foot">
+        <span class="price">${formatPrice(p.price)}</span>
+        <button class="add-btn ${inCart?'added':''}" onclick="addToCart(${p.id})">
+          ${inCart ? 'נוסף ✓' : 'הוסף לסל'}
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ================= HOME: featured ================= */
+function renderFeatured(){
+  const featured = PRODUCTS.slice(0,4);
+  document.getElementById('featuredGrid').innerHTML = featured.map(productCard).join('');
+}
+
+/* ================= SHOP ================= */
+function renderFilters(){
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = CATS.map(c=>
+    `<button class="filter-btn ${c===currentFilter?'active':''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  bar.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentFilter = btn.dataset.cat;
+      renderFilters();
+      renderShop();
+    });
+  });
+}
+function renderShop(){
+  const list = currentFilter==='הכל' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===currentFilter);
+  document.getElementById('shopGrid').innerHTML = list.map(productCard).join('');
+}
+
+/* ================= CART LOGIC ================= */
+function addToCart(id){
+  cart[id] = (cart[id]||0) + 1;
+  updateCartCount();
+  refreshProductButtons();
+  const p = PRODUCTS.find(x=>x.id===id);
+  showToast(`${p.name} נוסף לסל`);
+}
+function changeQty(id, delta){
+  if(!cart[id]) return;
+  cart[id] += delta;
+  if(cart[id] <= 0) delete cart[id];
+  updateCartCount();
+  renderCart();
+  refreshProductButtons();
+}
+function removeFromCart(id){
+  delete cart[id];
+  updateCartCount();
+  renderCart();
+  refreshProductButtons();
+}
+function refreshProductButtons(){
+  renderFeatured();
+  renderShop();
+}
+function updateCartCount(){
+  const total = Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+function renderCart(){
+  const container = document.getElementById('cartContent');
+  const ids = Object.keys(cart);
+  if(ids.length===0){
+    container.innerHTML = `
+      <div class="empty-cart">
+        <h3 style="font-size:1.4rem;">הסל שלך ריק</h3>
+        <p>עדיין לא הוספתם פריטים מהקולקציה.</p>
+        <button class="btn btn-primary" data-nav="shop">לצפייה בקולקציה</button>
+      </div>`;
+    attachNavButtons(container);
+    return;
+  }
+  let subtotal = 0;
+  const itemsHtml = ids.map(id=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    const qty = cart[id];
+    subtotal += p.price * qty;
+    return `
+    <div class="cart-item">
+      <img src="${imgUrl(p.img,200,250)}" alt="${p.name}">
+      <div>
+        <h4>${p.name}</h4>
+        <div class="meta">${p.cat} · ${formatPrice(p.price)} ליחידה</div>
+        <div class="qty-control">
+          <button onclick="changeQty(${p.id},-1)" aria-label="הפחת כמות">−</button>
+          <span>${qty}</span>
+          <button onclick="changeQty(${p.id},1)" aria-label="הוסף כמות">+</button>
+        </div>
+        <a class="remove-link" onclick="removeFromCart(${p.id})">הסר פריט</a>
+      </div>
+      <div style="font-weight:600;">${formatPrice(p.price*qty)}</div>
+    </div>`;
+  }).join('');
+
+  const shipping = subtotal >= 300 ? 0 : 29;
+  const total = subtotal + shipping;
+
+  container.innerHTML = `
+    <div class="cart-layout">
+      <div>${itemsHtml}</div>
+      <div class="cart-side">
+        <h3 style="font-size:1.15rem;margin-bottom:18px;">סיכום הזמנה</h3>
+        <div class="cart-row"><span>סכום ביניים</span><span>${formatPrice(subtotal)}</span></div>
+        <div class="cart-row"><span>משלוח</span><span>${shipping===0?'חינם':formatPrice(shipping)}</span></div>
+        <div class="cart-row total"><span>סה״כ לתשלום</span><span>${formatPrice(total)}</span></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;" onclick="checkout()">מעבר לתשלום</button>
+        <p style="font-size:.78rem;color:var(--ink-soft);margin-top:14px;">משלוח חינם בהזמנה מעל ₪300. זהו אתר הדגמה — לא מתבצע תשלום אמיתי.</p>
+      </div>
+    </div>`;
+}
+
+function checkout(){
+  if(Object.keys(cart).length===0) return;
+  showToast('תודה! ההזמנה שלכם התקבלה 🌿');
+  cart = {};
+  updateCartCount();
+  renderCart();
+  refreshProductButtons();
+}
+
+/* ================= NAVIGATION ================= */
+function goToPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('nav a[data-nav]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.nav===name);
+  });
+  if(name==='cart') renderCart();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function attachNavButtons(scope=document){
+  scope.querySelectorAll('[data-nav]').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      e.preventDefault();
+      goToPage(el.dataset.nav);
+    });
+  });
+}
+
+/* ================= FORMS (demo only) ================= */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  showToast('ההודעה נשלחה, נחזור אליכם בקרוב!');
+  this.reset();
+});
+document.getElementById('nlForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  showToast('נרשמתם בהצלחה לניוזלטר של אדמה');
+  this.reset();
+});
+
+/* ================= INIT ================= */
+renderFeatured();
+renderFilters();
+renderShop();
+updateCartCount();
+attachNavButtons();
+</script>
 </body>
 </html>
