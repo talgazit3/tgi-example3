@@ -2,113 +2,86 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>פיצה מאסטרו - הזמנת פיצה</title>
+    <title>MODA - אופנת בוטיק</title>
     <style>
-        :root {
-            --pizza-red: #e63946;
-            --pizza-yellow: #ffb703;
-            --dark: #222;
-            --white: #fff;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #fdfdfd; color: var(--dark); overflow-x: hidden; }
-
-        /* אנימציית כניסה */
-        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: slideUp 0.8s ease-out forwards; }
-
-        /* Hero */
-        .hero { 
-            background: var(--pizza-red); 
-            color: white; 
-            text-align: center; 
-            padding: 80px 20px;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-        }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-
-        /* תפריט פיצות */
-        .container { padding: 40px 20px; max-width: 600px; margin: auto; }
-        .pizza-card { 
-            background: white; 
-            border-radius: 20px; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .pizza-card:hover { transform: scale(1.03); }
-        .pizza-img { font-size: 3rem; } /* אימוג'י בתור תמונה */
-
-        /* כפתור הזמנה */
-        .btn { 
-            background: var(--pizza-yellow); 
-            color: var(--dark); 
-            padding: 15px 30px; 
-            border-radius: 30px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            display: block; 
-            text-align: center;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(255,183,3,0.4);
-        }
-
-        /* מותאם לנייד */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-        }
+        :root { --main-color: #d4a373; --bg: #fefae0; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); }
+        nav { padding: 20px; background: #fff; display: flex; justify-content: space-around; position: sticky; top: 0; }
+        .page { display: none; padding: 40px; min-height: 80vh; }
+        .active { display: block; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 15px; text-align: center; border-radius: 10px; }
+        button { background: var(--main-color); color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        footer { text-align: center; padding: 20px; background: #333; color: white; }
     </style>
 </head>
 <body>
 
-    <header class="hero fade-in">
-        <h1>🍕 פיצה מאסטרו</h1>
-        <p>הפיצה הכי חמה בעיר, אצלך בדלת תוך 30 דקות!</p>
-    </header>
+<nav>
+    <a href="#" onclick="showPage('home')">בית</a>
+    <a href="#" onclick="showPage('shop')">חנות</a>
+    <a href="#" onclick="showPage('about')">אודות</a>
+    <a href="#" onclick="showPage('cart')">סל קניות (<span id="cart-count">0</span>)</a>
+</nav>
 
-    <div class="container fade-in">
-        <h2 style="text-align: center; margin-bottom: 20px;">התפריט שלנו</h2>
-        
-        <div class="pizza-card">
-            <div class="pizza-img">🍕</div>
-            <div>
-                <h3>מרגריטה קלאסית</h3>
-                <p>רוטב עגבניות איטלקי, מוצרלה טרייה ובזיליקום.</p>
-                <strong>59 ₪</strong>
-            </div>
+<!-- דף הבית -->
+<section id="home" class="page active">
+    <h1>ברוכים הבאים ל-MODA</h1>
+    <p>הקולקציה החדשה שלנו כאן. עיצובים על זמניים לאנשים עם סטייל.</p>
+</section>
+
+<!-- דף חנות -->
+<section id="shop" class="page">
+    <h2>הקולקציה שלנו</h2>
+    <div class="product-grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="חולצה">
+            <h3>חולצת פשתן</h3>
+            <p>150 ₪</p>
+            <button onclick="addToCart('חולצת פשתן', 150)">הוסף לסל</button>
         </div>
-
-        <div class="pizza-card">
-            <div class="pizza-img">🍄</div>
-            <div>
-                <h3>פיצה פטריות</h3>
-                <p>תוספת שמפיניון טריות עם שום קונפי.</p>
-                <strong>65 ₪</strong>
-            </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="מכנס">
+            <h3>מכנס מחוייט</h3>
+            <p>250 ₪</p>
+            <button onclick="addToCart('מכנס מחוייט', 250)">הוסף לסל</button>
         </div>
-
-        <div class="pizza-card">
-            <div class="pizza-img">🔥</div>
-            <div>
-                <h3>חריפה אש</h3>
-                <p>ג'לפנו, פלפל צ'ילי חריף וזיתים שחורים.</p>
-                <strong>69 ₪</strong>
-            </div>
-        </div>
-
-        <a href="tel:050-0000000" class="btn">להזמנה מהירה: 050-0000000</a>
     </div>
+</section>
 
-    <footer style="text-align: center; padding: 20px; color: #888;">
-        <p>&copy; פיצה מאסטרו - 2026</p>
-    </footer>
+<!-- דף אודות -->
+<section id="about" class="page">
+    <h2>אודות המותג</h2>
+    <p>אנחנו מאמינים באופנה בת קיימא ואיכות בלתי מתפשרת.</p>
+</section>
 
+<!-- דף סל -->
+<section id="cart" class="page">
+    <h2>הסל שלך</h2>
+    <div id="cart-items"></div>
+    <h3 id="total">סה"כ: 0 ₪</h3>
+    <button onclick="alert('תודה על רכישתך!')">סיום הזמנה</button>
+</section>
+
+<script>
+    let cart = [];
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+    function addToCart(name, price) {
+        cart.push({name, price});
+        document.getElementById('cart-count').innerText = cart.length;
+        updateCartUI();
+    }
+    function updateCartUI() {
+        const container = document.getElementById('cart-items');
+        container.innerHTML = cart.map(item => `<p>${item.name} - ${item.price} ₪</p>`).join('');
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        document.getElementById('total').innerText = `סה"כ: ${total} ₪`;
+    }
+</script>
+
+<footer>© 2026 MODA - כל הזכויות שמורות</footer>
 </body>
 </html>
